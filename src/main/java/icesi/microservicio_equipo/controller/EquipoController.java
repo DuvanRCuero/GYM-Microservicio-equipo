@@ -6,6 +6,8 @@ import icesi.microservicio_equipo.model.Estado;
 import icesi.microservicio_equipo.model.Tipo;
 import icesi.microservicio_equipo.service.EquipoService;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,15 +22,20 @@ public class EquipoController {
     public Equipo obtenerEquipo(@PathVariable String id){
         return equipoService.obtenerEquipo(new EquipoId(id));
     }
+    
 
     @PutMapping("/{id}/estado")
-    public void cambiarEstado (@PathVariable String id, @RequestBody String nuevoEstado){
+    public void cambiarEstado (@PathVariable String id, @RequestBody Estado nuevoEstado){
+        System.out.println("Recibido en el controlador: " + nuevoEstado);
+        equipoService.cambiarEstado(new EquipoId(id), nuevoEstado);
         
     }
 
     @PutMapping("/{id}/cantidad")
-    public void cambiarCantidad (@PathVariable String id, @RequestBody String nuevaCantidad){
-        equipoService.cambiarCantidad(new EquipoId(id),nuevaCantidad);
+    public void cambiarCantidad (@PathVariable String id, @RequestBody Map<String, String> body){
+        String cantidad = body.get("cantidad");
+        System.out.println("Recibido en el controlador: " + cantidad);
+        equipoService.cambiarCantidad(new EquipoId(id), cantidad);
     }
 
 

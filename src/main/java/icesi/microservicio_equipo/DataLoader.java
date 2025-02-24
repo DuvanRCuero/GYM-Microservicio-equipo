@@ -18,15 +18,16 @@ public class DataLoader implements CommandLineRunner {
         // Cargar datos de prueba
         EquipoId equipoId = new EquipoId("1");
         String descripcion = "una pesa bacana";
-        int cantidad = 10;
+
         Tipo tipo = new Tipo("pesa");
-        Estado estado = new Estado("nuevo","12/03/2024");
+        Estado estado = new Estado("nuevo");
     
         
         equipoRepository.save(Equipo.builder()
                 .id(equipoId)
                 .nombre("pesa 10 kg")
                 .descripcion(descripcion)
+                .cantidad("10")
                 .tipo(tipo)
                 .estado(estado)
                 .build());
