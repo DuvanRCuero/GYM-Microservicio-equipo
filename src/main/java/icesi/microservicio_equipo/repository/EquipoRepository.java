@@ -5,4 +5,7 @@ import icesi.microservicio_equipo.model.EquipoId;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EquipoRepository extends JpaRepository<Equipo, EquipoId> {
+
+    @SuppressWarnings("unchecked")
+    Equipo save(Equipo equipo);
 }
